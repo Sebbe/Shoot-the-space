@@ -10,3 +10,12 @@
 *.lai
 *.la
 *.a
+*.obj
+*.log
+*.tlog
+*.DS_Store
+Shoot-the-space/Debug/*
+*.exe
+Debug/*
+Grafikk_Lab/Deb*
+Grafikk_Lab.opensdf
