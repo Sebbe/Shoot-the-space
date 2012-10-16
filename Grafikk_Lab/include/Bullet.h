@@ -14,13 +14,12 @@ public:
 	void Update(double deltaTime);
 	void Render();
 	bool Delete();
+	void setX(GLfloat x);
+	void setY(GLfloat y);
+	void setZ(GLfloat z);
 protected:
 	GLfloat vertices[72];
 	float rotQube;
-	void drawCube();
-	
-	float degrees;
-	void drawQuad();
 };
 
 #endif

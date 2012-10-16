@@ -84,13 +84,12 @@ public:
 	void resize(unsigned int width, unsigned int height);
 
 	InputManager inputManager;
+	Bulletpool bulletpool;
+	Spaceship *ship;
 
 	static std::vector<Renderable*> renderList;
 	static std::vector<Updateable*> updateList;
 protected:
-
-	void drawQuad();
-	void drawCube();
 
 	/**
 	 * Creates the OpenGL context using SDL
@@ -105,14 +104,12 @@ protected:
 	void setOpenGLStates();
 	static const unsigned int window_width = 800;
 	static const unsigned int window_height = 600;
-	Image readTexture(std::string image);
 
 	float deltaTime;
 	int fps;
 	float fpsTime;
 private:
 	Timer my_timer; //< Timer for machine independent motion
-	GLuint texName;
 	float x, y, z;
 	float degrees;
 };

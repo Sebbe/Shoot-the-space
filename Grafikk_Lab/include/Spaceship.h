@@ -14,18 +14,21 @@
 #include <assert.h>
 #include <stdexcept>
 #include "InputManager.h"
+#include "Bulletpool.h"
+
 
 class Spaceship : public Renderable {
 public:
-	Spaceship(InputManager *inputManager);
+	Spaceship(InputManager *inputManager, Bulletpool *bulletpool);
 	~Spaceship();
 	void Shoot();
 	void Update(double deltaTime);
 	void Render();
 	void Move(double deltaTime);
 protected:
-	GLfloat vertices[18];
+	GLfloat vertices[42];
 	InputManager *input;
+	Bulletpool *bulletpool;
 };
 
 #endif
