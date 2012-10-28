@@ -1,5 +1,8 @@
 #include "Bulletpool.h"
 
+std::vector<Bullet*> Bulletpool::bulletList;
+std::vector<bool> Bulletpool::activeBullets
+	;
 Bulletpool::Bulletpool() {
 	maxBullets = 100;
 	totalActiveBullets = 0;

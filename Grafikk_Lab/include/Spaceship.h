@@ -13,8 +13,9 @@
 #include <vector>
 #include <assert.h>
 #include <stdexcept>
-#include "InputManager.h"
+#include "Input/InputManager.h"
 #include "Bulletpool.h"
+#include "Ship\BaseShip.h"
 
 
 class Spaceship : public Renderable {
@@ -25,10 +26,13 @@ public:
 	void Update(double deltaTime);
 	void Render();
 	void Move(double deltaTime);
+	bool CheckCollision(Vector3D<float> checkCol, int side);
+	bool CheckCollision(BaseShip *otShip);
 protected:
 	GLfloat vertices[42];
 	InputManager *input;
 	Bulletpool *bulletpool;
+	Vector3D<float> colBox; // allso desides how little the ship should be
 };
 
 #endif

@@ -12,9 +12,11 @@ public:
 	Bullet* GetBullet(int id);
 	void Update(double deltaTime);
 	void Render();
+	static std::vector<Bullet*> bulletList;
+	static std::vector<bool> activeBullets;
 private:
-	std::vector<Bullet*> bulletList;
-	std::vector<bool> activeBullets;
+	
+	
 	int maxBullets;
 	int totalActiveBullets;
 };

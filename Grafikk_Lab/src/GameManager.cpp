@@ -9,10 +9,12 @@
 #include <vector>
 #include <assert.h>
 #include <stdexcept>
-#include "InputManager.h"
+#include "input/InputManager.h"
 #include "Spaceship.h"
 #include "Bullet.h"
 #include "Bulletpool.h"
+#include "World.h"
+#include "Utils/Vector3D.h";
 
 using std::cerr;
 using std::endl;
@@ -21,17 +23,24 @@ using GLUtils::checkGLErrors;
 std::vector<Renderable*> GameManager::renderList;
 std::vector<Updateable*> GameManager::updateList;
 
+float GameManager::ZFAR = 50.0f;
+float GameManager::ZNEAR = 0.1f;
+
 GameManager::GameManager() {
 	my_timer.restart();
 	x = 0.0f;
 	y = 0.0f;
 	z = 0.0f;
 	degrees = 0.0f;
+	
+	fps = 0;
+	fpsTime = 0;
+	srand(static_cast<unsigned int>(time( NULL )) );
 
 	ship = new Spaceship(&inputManager, &bulletpool);
 	GameManager::renderList.push_back(ship);
-	fps = 0;
-	fpsTime = 0;
+	spawnManager.SetMaxEnemies(30);
+	spawnManager.Init();
 }
 
 GameManager::~GameManager() {
@@ -65,7 +74,7 @@ void GameManager::resize(unsigned int width, unsigned int height) {
    glViewport(0, 0, width, height);
    glMatrixMode(GL_PROJECTION);
    glLoadIdentity();
-   gluPerspective(50, width/height, 0.1, 25);
+   gluPerspective(50, width/height, ZNEAR, ZFAR);
 
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
@@ -106,6 +115,8 @@ void GameManager::init() {
 
 	//Finally check for errors
 	checkGLErrors();
+
+	world.Init();
 }
 
 void GameManager::render() {
@@ -114,9 +125,10 @@ void GameManager::render() {
 	glLoadIdentity();
 
 	glPushMatrix();
-			
-			ship->Render();
-			bulletpool.Render();
+		world.Render();
+		ship->Render();
+		spawnManager.Render();
+		bulletpool.Render();
 	glPopMatrix();
 	checkGLErrors();
 }
@@ -142,6 +154,7 @@ void GameManager::play() {
 void GameManager::Update() {
 	inputManager.Update();
 	ship->Update(deltaTime);
+	spawnManager.Update(deltaTime);
 	bulletpool.Update(deltaTime);
 }
 

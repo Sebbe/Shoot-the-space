@@ -80,23 +80,32 @@
   <ItemGroup>
     <ClInclude Include="include\Bullet.h" />
     <ClInclude Include="include\Bulletpool.h" />
+    <ClInclude Include="include\Ship\BaseShip.h" />
+    <ClInclude Include="include\Utils\Vector3D.h" />
+    <ClInclude Include="include\World.h" />
     <ClInclude Include="include\GameManager.h" />
     <ClInclude Include="include\GLUtils\GLUtils.hpp" />
     <ClInclude Include="include\GLUtils\Program.hpp" />
     <ClInclude Include="include\GLUtils\VBO.hpp" />
-    <ClInclude Include="include\InputManager.h" />
+    <ClInclude Include="include\Input\InputManager.h" />
     <ClInclude Include="include\Renderable.h" />
     <ClInclude Include="include\Spaceship.h" />
     <ClInclude Include="include\Timer.h" />
     <ClInclude Include="include\Updateable.h" />
+    <ClInclude Include="include\Ship\SimpleEnemy.h" />
+    <ClInclude Include="include\SpawnManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\Bulletpool.cpp" />
     <ClCompile Include="src\GameManager.cpp" />
-    <ClCompile Include="src\InputManager.cpp" />
+    <ClCompile Include="src\Input\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Ship\BaseShip.cpp" />
+    <ClCompile Include="src\Ship\SimpleEnemy.cpp" />
     <ClCompile Include="src\Spaceship.cpp" />
+    <ClCompile Include="src\SpawnManager.cpp" />
+    <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

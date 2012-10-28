@@ -11,7 +11,8 @@
 #include <vector>
 #include <assert.h>
 #include <stdexcept>
-#include "InputManager.h"
+#include "input/InputManager.h"
+#include "Utils\Vector3D.h"
 
 using std::cerr;
 using std::endl;
@@ -33,11 +34,16 @@ public:
 		return false;
 	}
 
+	void SetPosition(Vector3D<float> pos) {
+		this->pos = pos;
+	}
+
 	GLfloat inline getX() { return x; }
 	GLfloat inline getY() { return y; }
 	GLfloat inline getZ() { return z; }
 protected:
 	GLfloat movementPS;
+	Vector3D<float> pos;
 	GLfloat x;
 	GLfloat y;
 	GLfloat z;

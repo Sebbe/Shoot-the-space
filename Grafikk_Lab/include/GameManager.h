@@ -1,31 +1,19 @@
 #ifndef _GAMEMANAGER_H_
-
 #define _GAMEMANAGER_H_
-
-
 
 #include <memory>
 #include <Windows.h>
 #include <gl\GL.h>
 #include <list>
-
 #include <SDL.h>
-
-#include "InputManager.h"
-
+#include "Input/InputManager.h"
 #include "Timer.h"
-
 #include "Renderable.h"
-
 #include "Spaceship.h"
 #include "Updateable.h"
-
-struct Image {
-	std::vector<char> data;
-	unsigned int components;
-	unsigned long width;
-	unsigned long height;
-};
+#include "World.h"
+#include "Ship\SimpleEnemy.h"
+#include "SpawnManager.h"
 
 /**
 
@@ -83,10 +71,10 @@ public:
 
 	void resize(unsigned int width, unsigned int height);
 
-	InputManager inputManager;
-	Bulletpool bulletpool;
-	Spaceship *ship;
+	
 
+	static float ZNEAR;
+	static float ZFAR;
 	static std::vector<Renderable*> renderList;
 	static std::vector<Updateable*> updateList;
 protected:
@@ -112,6 +100,12 @@ private:
 	Timer my_timer; //< Timer for machine independent motion
 	float x, y, z;
 	float degrees;
+
+	InputManager inputManager;
+	Bulletpool bulletpool;
+	Spaceship *ship;
+	World world;
+	SpawnManager spawnManager;
 };
 
 #endif // _GAMEMANAGER_H_
