@@ -80,6 +80,7 @@
   <ItemGroup>
     <ClInclude Include="include\Bullet.h" />
     <ClInclude Include="include\Bulletpool.h" />
+    <ClInclude Include="include\Ship\AdvancedEnemy.h" />
     <ClInclude Include="include\Ship\BaseShip.h" />
     <ClInclude Include="include\Utils\Vector3D.h" />
     <ClInclude Include="include\World.h" />

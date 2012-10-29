@@ -27,6 +27,7 @@ public:
 	void Render();
 	void Move(double deltaTime);
 	bool CheckCollision(Vector3D<float> checkCol, int side);
+	bool CheckCollision(Bullet *aBullet);
 	bool CheckCollision(BaseShip *otShip);
 protected:
 	GLfloat vertices[42];

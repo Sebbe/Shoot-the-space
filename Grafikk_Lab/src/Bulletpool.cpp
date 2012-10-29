@@ -1,8 +1,8 @@
 #include "Bulletpool.h"
 
 std::vector<Bullet*> Bulletpool::bulletList;
-std::vector<bool> Bulletpool::activeBullets
-	;
+std::vector<bool> Bulletpool::activeBullets;
+
 Bulletpool::Bulletpool() {
 	maxBullets = 100;
 	totalActiveBullets = 0;
@@ -15,12 +15,12 @@ Bulletpool::Bulletpool() {
 int Bulletpool::AddBullet(GLfloat shipX, GLfloat shipY, GLfloat shipZ) {
 	//finds next bullet in the list that is not in use and makes it active
 	if(totalActiveBullets == (maxBullets - 1)) {
-		std::cout << "Bullet not added";
+		//std::cout << "Bullet not added";
 		return -1;
 	}
 	for(int i = 0; i < maxBullets; i++) {
 		if(activeBullets[i] == false) {
-			std::cout << "Bullet added";
+			//std::cout << "Bullet added";
 			activeBullets[i] = true;
 			bulletList[i]->setX(shipX);
 			bulletList[i]->setY(shipY);
@@ -31,7 +31,7 @@ int Bulletpool::AddBullet(GLfloat shipX, GLfloat shipY, GLfloat shipZ) {
 }
 
 void Bulletpool::Render() {
-	for(int i = 0; i < activeBullets.size(); i++) {
+	for(std::size_t i = 0; i < activeBullets.size(); i++) {
 		if(activeBullets[i] == true) {
 			bulletList[i]->Render();
 		}
@@ -39,7 +39,7 @@ void Bulletpool::Render() {
 }
 
 void Bulletpool::Update(double deltaTime) {
-	for(int i = 0; i < activeBullets.size(); i++) {
+	for(std::size_t i = 0; i < activeBullets.size(); i++) {
 		if(activeBullets[i] == true) {
 			bulletList[i]->Update(deltaTime); 
 			if(bulletList[i]->Delete()) {

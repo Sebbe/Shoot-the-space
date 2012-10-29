@@ -14,7 +14,7 @@
 #include "Bullet.h"
 #include "Bulletpool.h"
 #include "World.h"
-#include "Utils/Vector3D.h";
+#include "Utils/Vector3D.h"
 
 using std::cerr;
 using std::endl;
@@ -135,7 +135,7 @@ void GameManager::render() {
 
 void GameManager::play() {
 	while (!inputManager.CloseWindow()) {
-		fpsTime += deltaTime = my_timer.elapsedAndRestart();
+		deltaTime = my_timer.elapsedAndRestart();
 		// update everything
 		
 		if(inputManager.Resize()) {

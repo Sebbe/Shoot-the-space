@@ -8,7 +8,7 @@
 Spaceship::Spaceship(InputManager *inputManager, Bulletpool *bulletpool) {
 	input = inputManager;
 	this->bulletpool = bulletpool;
-	movementPS = 0.3;
+	movementPS = static_cast<GLfloat>(0.3);
 	colBox = Vector3D<float>(0.1f, 0.05f, 0.1f);
 	// bottom
 	//vertex 1 (top)
@@ -158,7 +158,7 @@ void Spaceship::Move(double deltaTime) {
 		}
 	}
 
-	std::cout << "Ship (" << x << ", " << y << ", " << z << ")" << endl;
+	//std::cout << "Ship (" << x << ", " << y << ", " << z << ")" << endl;
 }
 
 /**
