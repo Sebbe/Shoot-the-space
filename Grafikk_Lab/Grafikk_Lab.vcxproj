@@ -102,6 +102,7 @@
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\Input\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Ship\AdvancedEnemy.cpp" />
     <ClCompile Include="src\Ship\BaseShip.cpp" />
     <ClCompile Include="src\Ship\SimpleEnemy.cpp" />
     <ClCompile Include="src\Spaceship.cpp" />
