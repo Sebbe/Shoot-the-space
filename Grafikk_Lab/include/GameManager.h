@@ -14,15 +14,12 @@
 #include "World.h"
 #include "Ship\SimpleEnemy.h"
 #include "SpawnManager.h"
+#include "Collision\CollisionManager.h"
 
 /**
-
  * This class handles the game logic and display.
-
  * Uses SDL as the display manager, and glm for 
-
  * vector and matrix computations
-
  */
 
 class GameManager {
@@ -77,6 +74,8 @@ public:
 	static float ZFAR;
 	static std::vector<Renderable*> renderList;
 	static std::vector<Updateable*> updateList;
+	static CollisionManager collisionManager;
+	static InputManager inputManager;
 protected:
 
 	/**
@@ -101,7 +100,7 @@ private:
 	float x, y, z;
 	float degrees;
 
-	InputManager inputManager;
+	
 	Bulletpool bulletpool;
 	Spaceship *ship;
 	World world;

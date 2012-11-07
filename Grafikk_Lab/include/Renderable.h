@@ -20,33 +20,58 @@ using GLUtils::checkGLErrors;
 
 class Renderable {
 public:
+	/**
+	 *
+	 *
+	 */
 	Renderable() {}
 	virtual ~Renderable() {}
+	
+	/**
+	 *
+	 *
+	 */
 	virtual void Render() {
 		std::cout << "test";
 	}
 
+	/**
+	 *
+	 *
+	 */
 	virtual void Update(double deltaTime) {
 		std::cout << "feil ";
 	};
 
+	/**
+	 *
+	 *
+	 */
 	virtual bool Delete() {
 		return false;
 	}
 
-	void SetPosition(Vector3D<float> pos) {
+	/**
+	 * Sets postion
+	 *
+	 */
+	void SetPosition(Vector3D<GLfloat> pos) {
 		this->pos = pos;
 	}
 
-	GLfloat inline getX() { return x; }
-	GLfloat inline getY() { return y; }
-	GLfloat inline getZ() { return z; }
+	/**
+	 * Helper functions to get x y and z
+	 * 
+	 */
+	Vector3D<GLfloat> inline getPos() { return pos; }
+	GLfloat inline getX() { return pos.X(); }
+	GLfloat inline getY() { return pos.Y(); }
+	GLfloat inline getZ() { return pos.Z(); }
 protected:
+	/* Decides how fast things will move */
 	GLfloat movementPS;
-	Vector3D<float> pos;
-	GLfloat x;
-	GLfloat y;
-	GLfloat z;
+	/* Position */
+	Vector3D<GLfloat> pos;
 };
 
 #endif

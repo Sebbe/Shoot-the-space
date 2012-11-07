@@ -5,10 +5,9 @@
 #include "Ship\BaseShip.h"
 #include "Utils/Vector3D.h"
 
-Spaceship::Spaceship(InputManager *inputManager, Bulletpool *bulletpool) {
-	input = inputManager;
+Spaceship::Spaceship(Bulletpool *bulletpool) : BaseShip(Vector3D<GLfloat>::Zero()) {
 	this->bulletpool = bulletpool;
-	movementPS = static_cast<GLfloat>(0.3);
+	movementPS = static_cast<GLfloat>(2.0);
 	colBox = Vector3D<float>(0.1f, 0.05f, 0.1f);
 	// bottom
 	//vertex 1 (top)
@@ -96,15 +95,16 @@ Spaceship::Spaceship(InputManager *inputManager, Bulletpool *bulletpool) {
 			glVertex3f(-1.0f,-1.0f,-1.0f);	// Bottom Left Of The Quad (Left)
 			glVertex3f(-1.0f,-1.0f, 1.0f);	// Bottom Right Of The Quad (Left)*/
 
-	x = z = 0;
-	z = -2;
-	y = -0.8;
+	pos.SetX(0);
+	pos.SetZ(-2);
+	pos.SetY(-0.8f);
+	_collisionBox = CollisionBox(&pos, colBox);
 }
 
 void Spaceship::Update(double deltaTime) {
 	Move(deltaTime);
 
-	if(input->IsKeyPressed(SDLK_SPACE)) {
+	if(GameManager::inputManager.IsKeyPressed(SDLK_SPACE)) {
 		Shoot();
 	}
 }
@@ -113,7 +113,7 @@ void Spaceship::Render() {
 	glLoadIdentity();
 	
 	glPushMatrix();
-		glTranslatef(x, y, z);
+		glTranslatef(pos.X(), pos.Y(), pos.Z());
 		glScalef(colBox.X(), colBox.Y(), colBox.Z());
 		glColor3f(1.0f, 0.0f, 0.0f);
 		//glRotatef(180, 1, 0, 0);
@@ -129,32 +129,32 @@ void Spaceship::Render() {
 }
 
 void Spaceship::Shoot() {
-	bulletpool->AddBullet(x, y, z);
+	bulletpool->AddBullet(pos.X(), pos.Y(), pos.Z());
 }
 
 void Spaceship::Move(double deltaTime) {
-	if(input->IsKeyDown(SDLK_a)) {
-		float temp = x - movementPS * static_cast<GLfloat>(deltaTime);
+	if(GameManager::inputManager.IsKeyDown(SDLK_a)) {
+		GLfloat temp = pos.X() - movementPS * static_cast<GLfloat>(deltaTime);
 		if(!CheckCollision(Vector3D<float>(temp, 0, 0), 0)) {
-			x -= movementPS * static_cast<GLfloat>(deltaTime);
+			pos.SetX(pos.X() - movementPS * static_cast<GLfloat>(deltaTime));
 		}
 	}
-	if(input->IsKeyDown(SDLK_d)) {
-		float temp = x + movementPS * static_cast<GLfloat>(deltaTime);
+	if(GameManager::inputManager.IsKeyDown(SDLK_d)) {
+		GLfloat temp = pos.X() + movementPS * static_cast<GLfloat>(deltaTime);
 		if(!CheckCollision(Vector3D<float>(temp, 0, 0), 1)) {
-			x += movementPS * static_cast<GLfloat>(deltaTime);
+			pos.SetX(pos.X() + movementPS * static_cast<GLfloat>(deltaTime));
 		}
 	}
-	if(input->IsKeyDown(SDLK_w)) {
-		float temp = y + movementPS * static_cast<GLfloat>(deltaTime);
+	if(GameManager::inputManager.IsKeyDown(SDLK_w)) {
+		GLfloat temp = pos.Y() + movementPS * static_cast<GLfloat>(deltaTime);
 		if(!CheckCollision(Vector3D<float>(0, temp, 0), 2)) {
-			y += movementPS * static_cast<GLfloat>(deltaTime);
+			pos.SetY(pos.Y() + movementPS * static_cast<GLfloat>(deltaTime));
 		}
 	}
-	if(input->IsKeyDown(SDLK_s)) {
-		float temp = y - movementPS * static_cast<GLfloat>(deltaTime);
+	if(GameManager::inputManager.IsKeyDown(SDLK_s)) {
+		GLfloat temp = pos.Y() - movementPS * static_cast<GLfloat>(deltaTime);
 		if(!CheckCollision(Vector3D<float>(0, temp, 0), 3)) {
-			y -= movementPS * static_cast<GLfloat>(deltaTime);
+			pos.SetY(pos.Y() -movementPS * static_cast<GLfloat>(deltaTime));
 		}
 	}
 
@@ -174,11 +174,15 @@ bool Spaceship::CheckCollision(Vector3D<float> checkCol, int side) {
 	return false;
 }
 
-bool Spaceship::CheckCollision(BaseShip *otShip) {
-	return false;
+void Spaceship::Collision(CollisionBox* other)
+{
+	if(other->GetType() == CollisionBox::ENEMY_BULLET)
+	{
+		pos.SetX(0);
+		pos.SetY(0);
+	}
 }
 
 Spaceship::~Spaceship() {
 	bulletpool = NULL;
-	input = NULL;
 }

@@ -6,7 +6,7 @@
 #include <vector>
 #include "Ship/BaseShip.h"
 #include "Ship\SimpleEnemy.h"
-
+#include "Bulletpool.h"
 
 class SpawnManager : public Renderable
 {
@@ -18,13 +18,18 @@ public:
 	void Update(float deltaTime);
 	void Render();
 	void Spawn();
+	void SpawnAdvanced();
 	void Init();
 	void SetMaxEnemies(int maxEnemies);
+	void SetBulletpool(Bulletpool *manager);
 
 	std::vector<BaseShip*> enemies;
+	std::vector<BaseShip*> enemiesAdvanced;
 	int maxEnemies;
 	float spawnTimer;
+	float spawnTimerAdvanced;
 	float randomSpawnTime;
+	float randomSpawnTimeAdvanced;
 
 	float GenerateRandomFloat(float maxNum, float minNum, bool minNegative = false)
 		{
@@ -37,6 +42,9 @@ public:
 			int maxInt = static_cast<int>(maxNum);
 			return (static_cast<float>(rand() % maxInt) + minNum) / 100;
 		}
+
+protected:
+	Bulletpool *bulletpool;
 };
 
 #endif

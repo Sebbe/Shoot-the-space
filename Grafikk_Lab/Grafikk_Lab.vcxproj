@@ -80,6 +80,9 @@
   <ItemGroup>
     <ClInclude Include="include\Bullet.h" />
     <ClInclude Include="include\Bulletpool.h" />
+    <ClInclude Include="include\Collision\Collideable.h" />
+    <ClInclude Include="include\Collision\CollisionBox.h" />
+    <ClInclude Include="include\Collision\CollisionManager.h" />
     <ClInclude Include="include\Ship\AdvancedEnemy.h" />
     <ClInclude Include="include\Ship\BaseShip.h" />
     <ClInclude Include="include\Utils\Vector3D.h" />
@@ -99,6 +102,8 @@
   <ItemGroup>
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\Bulletpool.cpp" />
+    <ClCompile Include="src\Collision\CollisionBox.cpp" />
+    <ClCompile Include="src\Collision\CollisionManager.cpp" />
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\Input\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />

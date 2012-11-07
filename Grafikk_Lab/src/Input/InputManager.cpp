@@ -1,6 +1,7 @@
 #include "Input/InputManager.h"
 #include <SDL.H>
 
+/** initilize the inputmanager */
 InputManager::InputManager() {
 	_closeWindow = false;
 	_resize = false;
@@ -11,6 +12,10 @@ InputManager::InputManager() {
 	}
 }
 
+/**
+ * Goes true all the buttons that is pressed and save it to the array
+ *
+ */
 void InputManager::Update() {
 	_resize = false;
 	for(int i = 0; i < 323; i++) {
@@ -38,14 +43,17 @@ void InputManager::Update() {
 	}
 }
 
+/** Checks if the button is pressed right now */
 bool InputManager::IsKeyDown(SDLKey key) {
 	return _curKeysHeld[key];
 }
 
+/** Checks i the button is not pressed right now */
 bool InputManager::IsKeyUp(SDLKey key) {
 	return _curKeysHeld[key];
 }
 
+/** Checks if the button is released this frame */
 bool InputManager::IsKeyReleased(SDLKey key) {
 	if(_prevKeysHeld[key]) {
 		if(!_curKeysHeld[key]) {
@@ -74,14 +82,18 @@ bool InputManager::IsKeyPressed(SDLKey key) {
 	return false;
 }
 
+/** Return array with which keys is held */
 bool* InputManager::GetDownKeys() {
 	return _curKeysHeld;
 }
 
+/** Return true if the window should close (escape or close button pressed */
 bool InputManager::CloseWindow() {
+	if(IsKeyDown(SDLK_ESCAPE)) return true;
 	return _closeWindow;
 }
 
+/** Returns true if window is resized */
 bool InputManager::Resize() {
 	return _resize;
 }

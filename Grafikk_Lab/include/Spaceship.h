@@ -18,22 +18,19 @@
 #include "Ship\BaseShip.h"
 
 
-class Spaceship : public Renderable {
+class Spaceship : public BaseShip {
 public:
-	Spaceship(InputManager *inputManager, Bulletpool *bulletpool);
+	Spaceship(Bulletpool *bulletpool);
 	~Spaceship();
 	void Shoot();
 	void Update(double deltaTime);
 	void Render();
 	void Move(double deltaTime);
 	bool CheckCollision(Vector3D<float> checkCol, int side);
-	bool CheckCollision(Bullet *aBullet);
-	bool CheckCollision(BaseShip *otShip);
+	virtual void Collision(CollisionBox*);
 protected:
 	GLfloat vertices[42];
-	InputManager *input;
 	Bulletpool *bulletpool;
-	Vector3D<float> colBox; // allso desides how little the ship should be
 };
 
 #endif

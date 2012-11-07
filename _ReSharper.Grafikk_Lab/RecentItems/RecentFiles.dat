@@ -1,45 +1,59 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Vector3D.h/z:2-0" caret="2437" fromTop="17" />
     <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:World.h" caret="62" fromTop="0" />
     <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:World.cpp" caret="1001" fromTop="22" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SpawnManager.h" caret="226" fromTop="7" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bullet.h" caret="0" fromTop="0" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bullet.cpp" caret="47" fromTop="0" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bulletpool.h" caret="353" fromTop="15" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:GameManager.h" caret="1815" fromTop="45" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SpawnManager.cpp" caret="995" fromTop="18" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Renderable.h" caret="0" fromTop="0" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Spaceship.h" caret="668" fromTop="23" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:GameManager.cpp" caret="3526" fromTop="59" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bulletpool.cpp" caret="591" fromTop="20" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Spaceship.cpp" caret="320" fromTop="10" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SimpleEnemy.h/z:2-0" caret="0" fromTop="0" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SimpleEnemy.cpp/z:2-0" caret="152" fromTop="5" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:BaseShip.cpp/z:2-0" caret="22" fromTop="0" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:BaseShip.h/z:2-0" caret="0" fromTop="0" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:AdvancedEnemy.h" caret="188" fromTop="8" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:AdvancedEnemy.cpp" caret="131" fromTop="3" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:CollisionManager.h" caret="599" fromTop="26" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Renderable.h" caret="1062" fromTop="29" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Vector3D.h/z:2-0" caret="464" fromTop="23" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:CollisionBox.h" caret="0" fromTop="0" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:CollisionBox.cpp" caret="1516" fromTop="14" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:InputManager.h/z:2-0" caret="0" fromTop="0" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:InputManager.cpp/z:2-0" caret="86" fromTop="3" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:CollisionManager.cpp" caret="779" fromTop="40" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Spaceship.h" caret="712" fromTop="31" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:GameManager.h" caret="1353" fromTop="0" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SimpleEnemy.cpp" caret="2943" fromTop="37" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:BaseShip.cpp" caret="820" fromTop="13" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SimpleEnemy.h" caret="586" fromTop="23" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:AdvancedEnemy.h" caret="881" fromTop="31" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bulletpool.cpp" caret="1036" fromTop="13" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bullet.h" caret="588" fromTop="22" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Collideable.h" caret="0" fromTop="0" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Spaceship.cpp" caret="5089" fromTop="28" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bullet.cpp" caret="5916" fromTop="10" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:GameManager.cpp" caret="1152" fromTop="31" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:BaseShip.h" caret="191" fromTop="7" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bulletpool.h" caret="289" fromTop="10" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SpawnManager.h" caret="725" fromTop="21" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SpawnManager.cpp" caret="933" fromTop="28" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:AdvancedEnemy.cpp" caret="1664" fromTop="16" />
   </RecentFiles>
   <RecentEdits>
     <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Vector3D.h/z:2-0" caret="2437" fromTop="17" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SimpleEnemy.h/z:2-0" caret="78" fromTop="3" />
     <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:World.h" caret="0" fromTop="0" />
     <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:World.cpp" caret="1044" fromTop="16" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SpawnManager.h" caret="0" fromTop="10" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Renderable.h" caret="682" fromTop="19" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:GameManager.h" caret="1815" fromTop="24" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bullet.cpp" caret="47" fromTop="2" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SimpleEnemy.cpp/z:2-0" caret="2136" fromTop="17" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bulletpool.h" caret="353" fromTop="15" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:BaseShip.h/z:2-0" caret="124" fromTop="5" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SpawnManager.cpp" caret="993" fromTop="17" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:BaseShip.cpp/z:2-0" caret="672" fromTop="32" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:AdvancedEnemy.h" caret="118" fromTop="6" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Spaceship.h" caret="668" fromTop="23" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Spaceship.cpp" caret="320" fromTop="10" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bulletpool.cpp" caret="591" fromTop="20" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:GameManager.cpp" caret="3526" fromTop="29" />
-    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:AdvancedEnemy.cpp" caret="131" fromTop="3" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:CollisionManager.h" caret="599" fromTop="26" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:CollisionBox.h" caret="328" fromTop="13" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Collideable.h" caret="180" fromTop="9" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Renderable.h" caret="1062" fromTop="29" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:CollisionBox.cpp" caret="1516" fromTop="14" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:CollisionManager.cpp" caret="430" fromTop="27" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SimpleEnemy.h" caret="571" fromTop="20" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SimpleEnemy.cpp" caret="2726" fromTop="23" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:InputManager.cpp/z:2-0" caret="86" fromTop="3" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:GameManager.h" caret="1353" fromTop="23" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Spaceship.h" caret="712" fromTop="31" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:BaseShip.cpp" caret="820" fromTop="10" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bulletpool.h" caret="131" fromTop="8" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SpawnManager.h" caret="1056" fromTop="34" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:SpawnManager.cpp" caret="933" fromTop="28" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:AdvancedEnemy.h" caret="881" fromTop="31" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:GameManager.cpp" caret="1152" fromTop="31" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:BaseShip.h" caret="191" fromTop="7" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bulletpool.cpp" caret="1036" fromTop="13" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bullet.h" caret="588" fromTop="22" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:AdvancedEnemy.cpp" caret="1679" fromTop="13" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Spaceship.cpp" caret="5089" fromTop="28" />
+    <File id="95BBC672-D108-43B2-B10E-D03ED31C43A7/f:Bullet.cpp" caret="5454" fromTop="11" />
   </RecentEdits>
 </RecentFiles>

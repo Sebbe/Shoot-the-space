@@ -25,6 +25,8 @@ std::vector<Updateable*> GameManager::updateList;
 
 float GameManager::ZFAR = 50.0f;
 float GameManager::ZNEAR = 0.1f;
+CollisionManager GameManager::collisionManager;
+InputManager GameManager::inputManager;
 
 GameManager::GameManager() {
 	my_timer.restart();
@@ -37,9 +39,12 @@ GameManager::GameManager() {
 	fpsTime = 0;
 	srand(static_cast<unsigned int>(time( NULL )) );
 
-	ship = new Spaceship(&inputManager, &bulletpool);
+	ship = new Spaceship(&bulletpool);
+	ship->SetType(CollisionBox::PLAYER_SHIP);
+	GameManager::collisionManager.AddCollideable(ship);
 	GameManager::renderList.push_back(ship);
 	spawnManager.SetMaxEnemies(30);
+	spawnManager.SetBulletpool(&bulletpool);
 	spawnManager.Init();
 }
 
@@ -156,6 +161,7 @@ void GameManager::Update() {
 	ship->Update(deltaTime);
 	spawnManager.Update(deltaTime);
 	bulletpool.Update(deltaTime);
+	collisionManager.CheckCollision();
 }
 
 void GameManager::quit() {

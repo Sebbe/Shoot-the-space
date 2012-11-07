@@ -1,8 +1,13 @@
 #include "ship/SimpleEnemy.h"
 #include <GL/GL.h>
+#include "GameManager.h"
 
 SimpleEnemy::SimpleEnemy(Vector3D<float> position) : BaseShip(position) {
-	movementPS = -10.0f;
+	movementPS = -3.0f;
+	colBox.SetX(0.1);
+	colBox.SetY(0.1);
+	colBox.SetZ(0.1);
+	_collisionBox = CollisionBox(&pos, colBox);
 }
 
 void SimpleEnemy::Move() {
@@ -28,7 +33,7 @@ void SimpleEnemy::Render() {
 	glLoadIdentity();
 	glPushMatrix();
 	glTranslatef(pos.X(), pos.Y(), pos.Z());
-		glScalef(0.1, 0.1, 0.1);
+		glScalef(colBox.X(), colBox.Y(), colBox.Z());
 		glColor3f(1.0f, 0.0f, 0.0f);
 		glRotatef(90, 1, 0, 0);
 		glEnableClientState(GL_VERTEX_ARRAY);    // enable vertex arrays
@@ -42,7 +47,11 @@ void SimpleEnemy::Shoot() {
 
 }
 
-bool SimpleEnemy::CheckCollision(BaseShip *otShip) {
+bool SimpleEnemy::Delete() {
+	if(pos.Z() >= GameManager::ZNEAR || _shouldDeActivate)  {
+		Active(false);
+		return true;
+	}
 	return false;
 }
 
@@ -56,19 +65,40 @@ bool SimpleEnemy::CheckCollision(Vector3D<float> checkCol, int side) {
 	return false;
 }
 
-bool SimpleEnemy::CheckCollision(Bullet *aBullet) {
-	if(aBullet->getZ() == pos.Z()) {
-		active = false;
-		pos.SetZ(20);
-		return true;
-	}
-
-	return false;
-}
-
 void SimpleEnemy::Update(float deltaTime) {
 	BaseShip::Update(deltaTime);
-	if(CheckCollision(pos, 4)) {
-		active = false;
+}
+
+CollisionBox* SimpleEnemy::GetCollisionBox()
+{
+	return &_collisionBox;
+}
+
+
+void SimpleEnemy::Collision(CollisionBox* other)
+{
+	if(other->GetType() == CollisionBox::PLAYER_BULLET)
+	{
+		pos.SetZ(100.0);
+		_shouldDeActivate = true;
 	}
+	if(other->GetType() == CollisionBox::ENEMY_SHIP
+		&& _collisionBox.GetType() == CollisionBox::ENEMY_BULLET)
+	{
+		return;
+	}
+}
+
+void SimpleEnemy::Active(bool isActive) {
+	if(!isActive) {
+		GameManager::collisionManager.RemoveCollideable(this);
+		active = isActive;
+		return;
+	}
+	_shouldDeActivate = false;
+	active = isActive;
+}
+
+bool SimpleEnemy::ShouldDeActivate() {
+	return _shouldDeActivate;
 }

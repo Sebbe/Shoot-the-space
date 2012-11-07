@@ -10,12 +10,15 @@ public:
 	virtual void Render();
 	virtual void Shoot();
 	virtual void Move();
-	virtual bool CheckCollision(BaseShip *otShip);
-	virtual bool CheckCollision(Bullet *aBullet);
+	virtual CollisionBox* GetCollisionBox();
+	virtual void Collision(CollisionBox*);
 	virtual bool CheckCollision(Vector3D<float> checkCol, int side);
 	virtual void Update(float deltaTime);
+	virtual bool Delete();
+	virtual void Active(bool isActive);
+	bool ShouldDeActivate();
 protected:
-
+	bool _shouldDeActivate;
 };
 
 #endif

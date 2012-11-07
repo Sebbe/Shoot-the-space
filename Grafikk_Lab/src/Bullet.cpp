@@ -2,11 +2,13 @@
 #include "GameManager.h"
 
 Bullet::Bullet(GLfloat shipX, GLfloat shipY, GLfloat shipZ) {
-	x = shipX;
-	y = shipY;
-	z = shipZ;
+	pos.SetX(shipX);
+	pos.SetY(shipY);
+	pos.SetZ(shipZ);
 	movementPS = 2.3;
 
+	colBox = Vector3D<GLfloat>(0.01f, 0.01f, 0.01f);
+	_collisionBox = CollisionBox(&pos, colBox);
 	rotQube = 0.0f;
 
 	//Top
@@ -143,22 +145,22 @@ Bullet::Bullet(GLfloat shipX, GLfloat shipY, GLfloat shipZ) {
 }
 
 void Bullet::setX(GLfloat x) {
-	this->x = x;
+	this->pos.SetX(x);
 }
 
 void Bullet::setY(GLfloat y) {
-	this->y = y;
+	this->pos.SetY(y);
 }
 
 void Bullet::setZ(GLfloat z) {
-	this->z = z;
+	this->pos.SetZ(z);
 }
 
 void Bullet::Render() {
 	glPushMatrix();
-		glTranslatef(x, y, z);
+		glTranslatef(pos.X(), pos.Y(), pos.Z());
 		glRotatef(rotQube, 1, 1, 1);
-		glScalef(0.01, 0.01, 0.01);
+		glScalef(colBox.X(), colBox.Y(), colBox.Z());
 		glColor3f(1.0f, 0.0f, 0.0f);
 		glEnableClientState(GL_VERTEX_ARRAY);    // enable vertex arrays
 		glVertexPointer(3, GL_FLOAT, 0, vertices);     // sette vertex pointer
@@ -186,7 +188,11 @@ void Bullet::Render() {
 
 void Bullet::Update(double deltaTime) {
 	//y += (movementPS * static_cast<GLfloat>(deltaTime));
-	z -= (movementPS * static_cast<GLfloat>(deltaTime));
+	if(_collisionBox.GetType() == CollisionBox::CollisionTypes::ENEMY_BULLET) {
+		pos.SetZ(pos.Z() + (2 * (movementPS * static_cast<GLfloat>(deltaTime))));
+	} else {
+		pos.SetZ(pos.Z() - (movementPS * static_cast<GLfloat>(deltaTime)));
+	}
 	//std::cout << "bullet (" << x << ", " << y << ", " << z << ")" << endl;
 	//rotQube += 90.0f*static_cast<float>(deltaTime);
 	if (rotQube >= 360) {
@@ -195,11 +201,62 @@ void Bullet::Update(double deltaTime) {
 }
 
 bool Bullet::Delete() {
-	if(z <= -GameManager::ZFAR) return true;
+	if(pos.Z() <= -GameManager::ZFAR && _collisionBox.GetType() == CollisionBox::CollisionTypes::PLAYER_BULLET || _shouldDeActivate)  {
+		SetActive(false);
+		return true;
+	}
 
+	if(pos.Z() >= GameManager::ZNEAR && _collisionBox.GetType() == CollisionBox::CollisionTypes::ENEMY_BULLET) {
+		SetActive(false);
+		return true;
+	}
 	return false;
 }
 
 Bullet::~Bullet() {
 
+}
+
+CollisionBox* Bullet::GetCollisionBox()
+{
+	return &_collisionBox;
+}
+
+
+void Bullet::Collision(CollisionBox* other)
+{
+	if(other->GetType() == CollisionBox::ENEMY_SHIP 
+		&& _collisionBox.GetType() == CollisionBox::PLAYER_BULLET)
+	{
+		_shouldDeActivate = true;
+	}
+	if(other->GetType() == CollisionBox::PLAYER_SHIP 
+		&& _collisionBox.GetType() == CollisionBox::PLAYER_BULLET)
+	{
+		return;
+	}
+	if(other->GetType() == CollisionBox::ENEMY_SHIP
+		&& _collisionBox.GetType() == CollisionBox::ENEMY_BULLET)
+	{
+		return;
+	}
+}
+
+void Bullet::SetType(CollisionBox::CollisionTypes type)
+{
+	_collisionBox.SetType(type);
+}
+
+void Bullet::SetActive(bool act) {
+	if(!act) {
+		GameManager::collisionManager.RemoveCollideable(this);
+		active = act;
+		return;
+	}
+	_shouldDeActivate = false;
+	active = act;
+}
+
+bool Bullet::ShouldDeActivate() {
+	return _shouldDeActivate;
 }

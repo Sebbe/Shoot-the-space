@@ -8,6 +8,7 @@ class Bulletpool {
 public:
 	Bulletpool();
 	int AddBullet(GLfloat shipX, GLfloat shipY, GLfloat shipZ);
+	int AddBullet(GLfloat shipX, GLfloat shipY, GLfloat shipZ, CollisionBox::CollisionTypes type);
 	void RemoveBullet(int id);
 	Bullet* GetBullet(int id);
 	void Update(double deltaTime);
@@ -15,8 +16,6 @@ public:
 	static std::vector<Bullet*> bulletList;
 	static std::vector<bool> activeBullets;
 private:
-	
-	
 	int maxBullets;
 	int totalActiveBullets;
 };

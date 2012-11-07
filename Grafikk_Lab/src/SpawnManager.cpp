@@ -3,24 +3,22 @@
 #include "GameManager.h"
 #include "Ship\BaseShip.h"
 #include "Ship\SimpleEnemy.h"
+#include "Ship\AdvancedEnemy.h"
 #include "Bulletpool.h"
 
 SpawnManager::SpawnManager()
 {
 	maxEnemies = 20;
-	randomSpawnTime = 1;
-	spawnTimer = 0;
 }
 
 SpawnManager::SpawnManager(int maxEne)
 {
 	maxEnemies = maxEne;
-	randomSpawnTime = 1;
-	spawnTimer = 0;
 }
 
 SpawnManager::~SpawnManager()
 {
+	
 	while(!enemies.empty())
 	{
 		delete enemies.back();
@@ -30,10 +28,21 @@ SpawnManager::~SpawnManager()
 
 void SpawnManager::Init()
 {
+	randomSpawnTime = 1;
+	randomSpawnTimeAdvanced = 20;
+	spawnTimer = 0;
+	spawnTimerAdvanced = 0;
+
 	for(int i = 0; i < maxEnemies; ++i)
 	{
-		enemies.push_back(new SimpleEnemy(
-			Vector3D<float>::Zero()));
+		BaseShip *temp = new SimpleEnemy(Vector3D<float>::Zero());
+		temp->SetType(CollisionBox::CollisionTypes::ENEMY_SHIP);
+		enemies.push_back(temp);
+
+		BaseShip *tempAd = new AdvancedEnemy(Vector3D<float>::Zero());
+		tempAd->SetType(CollisionBox::CollisionTypes::ENEMY_SHIP);
+		tempAd->SetBulletpool(bulletpool);
+		enemiesAdvanced.push_back(tempAd);
 	}
 }
 
@@ -44,17 +53,8 @@ void SpawnManager::SetMaxEnemies(int maxEnemies) {
 void SpawnManager::Update(float deltaTime)
 {
 	spawnTimer += deltaTime;
+	spawnTimerAdvanced += deltaTime;
 	
-	for(int i = 0; i < Bulletpool::activeBullets.size(); i++) {
-		if(Bulletpool::activeBullets[i] == true) {
-			for(int j = 0; j < enemies.size(); ++j) {
-				if(enemies[j]->IsActive()) {
-					enemies[j]->CheckCollision(Bulletpool::bulletList[i]);
-				}
-			}
-		}
-	}
-
 	if(spawnTimer >= randomSpawnTime)
 	{
  		Spawn();
@@ -62,9 +62,28 @@ void SpawnManager::Update(float deltaTime)
 		randomSpawnTime = GenerateRandomFloat(3.0f, 1.0f, false);
 	}
 
+	if(spawnTimerAdvanced >= randomSpawnTimeAdvanced)
+	{
+ 		SpawnAdvanced();
+		spawnTimerAdvanced = 0;
+		randomSpawnTimeAdvanced = GenerateRandomFloat(10.0f, 8.0f, false);
+	}
+
 	for(unsigned int i = 0; i < enemies.size(); ++i)
 	{
-		enemies[i]->Update(deltaTime);
+		if(enemies[i]->IsActive()) {
+			enemies[i]->Update(deltaTime);
+			if(enemies[i]->Delete()) {
+				
+			}
+		}
+
+		if(enemiesAdvanced[i]->IsActive()) {
+			enemiesAdvanced[i]->Update(deltaTime);
+			if(enemiesAdvanced[i]->Delete()) {
+				
+			}
+		}
 	}
 }
 
@@ -72,14 +91,19 @@ void SpawnManager::Render()
 {
 	for(unsigned int i = 0; i < enemies.size(); ++i)
 	{
-		enemies[i]->Render();
+		if(enemies[i]->IsActive()) {	
+			enemies[i]->Render();
+		}
+		if(enemiesAdvanced[i]->IsActive()) {
+			enemiesAdvanced[i]->Render();
+		}
 	}
 }
 
 void SpawnManager::Spawn()
 {
-	float x = GenerateRandomFloat(1, -1, true);
-	float y = GenerateRandomFloat(1, -1, true);
+	float x = GenerateRandomFloat(0.9, -0.9, true);
+	float y = GenerateRandomFloat(0.9, -0.9, true);
 	float z = -GameManager::ZFAR;
 	Vector3D<float> pos(x,y,z);
 
@@ -89,7 +113,31 @@ void SpawnManager::Spawn()
 		{
 			enemies[i]->Active(true);
 			enemies[i]->SetPosition(pos);
+			GameManager::collisionManager.AddCollideable(enemies[i]);
 			return;
 		}
 	}
+}
+
+void SpawnManager::SpawnAdvanced()
+{
+	float x = GenerateRandomFloat(0.9, -0.9, true);
+	float y = GenerateRandomFloat(0.9, -0.9, true);
+	float z = -GameManager::ZFAR;
+	Vector3D<float> pos(x,y,z);
+
+	for(unsigned int i = 0; i < enemiesAdvanced.size(); ++i)
+	{
+		if(!enemiesAdvanced[i]->IsActive())
+		{
+			enemiesAdvanced[i]->Active(true);
+			enemiesAdvanced[i]->SetPosition(pos);
+			GameManager::collisionManager.AddCollideable(enemiesAdvanced[i]);
+			return;
+		}
+	}
+}
+
+void SpawnManager::SetBulletpool(Bulletpool *manager) {
+	bulletpool = manager;
 }
